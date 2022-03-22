@@ -3,6 +3,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import Utils.Constants;
+import Utils.Utils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -41,7 +42,7 @@ public class JSONHandler {
         //JSON parser object to parse read file
         JSONParser jsonParser = new JSONParser();
 
-        try (FileReader reader = new FileReader(Constants.elkReportPath + fileName + extension))
+        try (FileReader reader = new FileReader(Constants.inDirectoryReports + fileName + "-" + Utils.dateNowToString() + extension))
         {
             //Read JSON file
             Object obj = jsonParser.parse(reader);

@@ -20,11 +20,11 @@ public class Main {
         }
 
         // Create new JSON output file
-        jsonHandler.openJsonFile(Constants.elkReportPath + fileName + "-" + Utils.dateNowToString() + logExtensionFileName);
+        jsonHandler.openJsonFile(Constants.outDirectoryReports + fileName + "-" + Utils.dateNowToString() + logExtensionFileName);
 
         // Copy the JSON file from Automation folder to reports one
         fileHandler.copyFile(Constants.cucumberReportPath + fileName + extensionFileName,
-                Constants.elkReportPath + fileName + extensionFileName);
+                Constants.inDirectoryReports + fileName + "-" + Utils.dateNowToString() + extensionFileName);
 
         // Fill the report JSON file
         jsonHandler.readJSON(fileName, extensionFileName);
@@ -33,13 +33,13 @@ public class Main {
         jsonHandler.writeJSON();
 
         // Append line breaker
-        fileHandler.appendNewLine(Constants.elkReportPath + fileName + "-" + Utils.dateNowToString() + logExtensionFileName);
+        fileHandler.appendNewLine(Constants.outDirectoryReports + fileName + "-" + Utils.dateNowToString() + logExtensionFileName);
 
         // delete the old JSON file from reports folder
-        fileHandler.deleteFile(fileName + extensionFileName);
+        //fileHandler.deleteFile(fileName + extensionFileName);
 
         // send the JSON file to LOGS_TESTES on CGD server
-        sender.sendFileByFTP();
+        sender.sendFileByGitPush();
 
     }
 }
